@@ -6,7 +6,7 @@ var settings = JSON.parse(fs.readFileSync('config.json', encoding="ascii"));
 
 module.exports = function (data) {
 
-  var client = net.connect(settings.agentport, settings.collectorhost);
+  var client = net.connect(settings.collectorport, settings.collectorhost);
 
   client.timeout = 1;
 
