@@ -1,4 +1,5 @@
 var net = require('net');
+var fs = require('fs');
 var mysql = require('./mysql.js');
 var logger = require('./logger.js')
 
