@@ -27,4 +27,4 @@ By such, you can achieve these goals:
 
 ## Manual, installation and configuration
 
-Please read the wiki for more informations: (https://github.com/alcir/falcao.js/wiki)
+Please read the wiki for more informations: https://github.com/alcir/falcao.js/wiki
