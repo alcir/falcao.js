@@ -1,3 +1,6 @@
 {
+  "collectorhost": "localhost",
+  "agentport": "8124",
+  "arpingcmd": "/usr/bin/arping",
   "loglevel": "error"
 }

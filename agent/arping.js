@@ -1,10 +1,13 @@
 var cp = require('child_process');
 var logger = require('./logger.js')
+var fs = require('fs');
 var dns = require('./ip2hostname.js');
+
+var settings = JSON.parse(fs.readFileSync('config.json', encoding="ascii"));
 
 module.exports = function (device, ip, callback) {
 
-var process = cp.spawn('/usr/bin/arping', ['-c 1', '-w 2', '-I', device, ip]);
+var process = cp.spawn(settings.arpingcmd, ['-c 1', '-w 2', '-I', device, ip]);
 
 //console.debug("/usr/bin/arping -c 1 -w 2 -I " + device + " " + ip);
 

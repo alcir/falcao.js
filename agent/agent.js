@@ -1,9 +1,12 @@
 var net = require('net');
+var fs = require('fs');
 var logger = require('./logger.js')
+
+var settings = JSON.parse(fs.readFileSync('config.json', encoding="ascii"));
 
 module.exports = function (data) {
 
-  var client = net.connect(8124, 'localhost');
+  var client = net.connect(settings.agentport, settings.collectorhost);
 
   client.timeout = 1;
 
