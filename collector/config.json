@@ -6,5 +6,5 @@
 
   "listenport": "8124",
 
-  "loglevel": "debug"
+  "loglevel": "error"
 }
