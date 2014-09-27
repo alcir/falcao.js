@@ -33,7 +33,7 @@ The agent and the collector are written in **Node.js**
 
 ## Manual, installation and configuration
 
-Please read the wiki for more informations: https://github.com/alcir/falcao.js/wiki
+Please read the wiki for more information: https://github.com/alcir/falcao.js/wiki
 
 ## Foreword
 
