@@ -4,8 +4,10 @@ falcao.js
 
 IP Address and MAC address Tracker / Monitor
 
-The idea behind this tool, is inspired, or is the same, of an old tool called Hawk (http://sourceforge.net/projects/iphawk/)
+The idea behind this tool, is inspired by an old tool called Hawk (http://sourceforge.net/projects/iphawk/)
 
+The node.js agent rely on the iputils arping tool. <br/>
+For now I have tested the agent and the collector only on Linux (Debian and Ubuntu).
 
 ## Description
 
@@ -26,6 +28,8 @@ By such, you can achieve these goals:
 - a data collector
 - a MySQL database (only one table)
 - a PHP web interface
+
+The agent and the collector are written in Node.js
 
 ## Manual, installation and configuration
 
