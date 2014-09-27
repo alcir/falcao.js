@@ -1,0 +1,10 @@
+{
+  "dbhost" : "db.server.address",
+  "dbname" : "falcaojs",
+  "dbuser" : "falcaojs",
+  "dbpass" : "password",
+
+  "listenport": "8124",
+
+  "loglevel": "error"
+}
