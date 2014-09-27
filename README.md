@@ -18,9 +18,9 @@ Falcao.js is a set of tools that help you to track, over time, the IP address us
 
 By such, you can achieve these goals:
 
-- track unused IP addresses that in the DNS seems to be associated with some hostname
-- track MAC addresses, associated with IP, seen in your network
-- track IP addresses responding to ping, but that are not associated to any hostname in the DNS
+- track IP addresses that do not respond for a long time to ping, but that, in the DNS, are associated with an hostname, so you can reclaim them
+- track IP addresses responding to ping, but that are not associated to any hostname in the DNS (rogue hosts, oversights)
+- track MAC addresses, associated with IPs, seen on your network(s)
 
 ## Components
 
@@ -29,8 +29,17 @@ By such, you can achieve these goals:
 - a MySQL database (only one table)
 - a PHP web interface
 
-The agent and the collector are written in Node.js
+The agent and the collector are written in **Node.js**
 
 ## Manual, installation and configuration
 
 Please read the wiki for more informations: https://github.com/alcir/falcao.js/wiki
+
+## Performance tests
+
+TODO
+
+## Foreword
+
+I cannot be named a Node.js or PHP programmer. I've written this tool for my educational purposes, and as the final project for the edX CS50x course.
+
