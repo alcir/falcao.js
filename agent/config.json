@@ -1,6 +1,0 @@
-{
-  "collectorhost": "localhost",
-  "collectorport": "8124",
-  "arpingcmd": "/usr/bin/arping",
-  "loglevel": "error"
-}
