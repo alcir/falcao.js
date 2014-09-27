@@ -35,10 +35,6 @@ The agent and the collector are written in **Node.js**
 
 Please read the wiki for more informations: https://github.com/alcir/falcao.js/wiki
 
-## Performance tests
-
-TODO
-
 ## Foreword
 
 I cannot be named a Node.js or PHP programmer. I've written this tool for my educational purposes, and as the final project for the edX CS50x course.
