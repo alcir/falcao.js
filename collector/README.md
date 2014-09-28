@@ -1,1 +1,1 @@
-The collector module. Please look at the wiki.
+The collector module. Please read the wiki.
