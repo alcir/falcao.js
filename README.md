@@ -16,7 +16,7 @@ Falcao.js is a set of tools that help you to track, over time, the IP address us
 - IP address / MAC address association
 - hostname association with IP addresses
 
-By such, you can achieve these goals:
+In this way, you can achieve these goals:
 
 - track IP addresses that do not respond for a long time to ping, but that, in the DNS, are associated with an hostname, so you can reclaim them
 - track IP addresses responding to ping, but that are not associated to any hostname in the DNS (rogue hosts, oversights)
