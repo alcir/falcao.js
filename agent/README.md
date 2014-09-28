@@ -1,1 +1,1 @@
-The agent module. Please look at the wiki.
+The agent module. Please read the wiki.
