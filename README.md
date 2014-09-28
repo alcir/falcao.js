@@ -31,7 +31,7 @@ In this way, you can achieve these goals:
 
 The agent and the collector are written in **Node.js**
 
-## Manual, installation and configuration
+## Documentation, installation and configuration
 
 Please read the wiki for more information: https://github.com/alcir/falcao.js/wiki
 
