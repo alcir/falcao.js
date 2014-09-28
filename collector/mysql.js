@@ -26,7 +26,9 @@ module.exports = function (data) {
                 "lastseen": jdata.ts.toString(),
                 "lastcheck": jdata.ts.toString()
               };
-logger.debug("ASSSSSSSSSSSSSSSSSSSSSSSSSSSSSssSTATUS : " + jdata.status);
+
+  logger.debug("ASSSSSSSSSSSSSSSSSSSSSSSSSSSSSssSTATUS : " + jdata.status);
+
   if (jdata.status == false) {
   //  logger.debug("STATUS : " + jdata.status);
     post.lastseen="";
