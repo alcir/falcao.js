@@ -35,7 +35,7 @@ The agent and the collector are written in **Node.js**
 
 Please read the wiki for more information: https://github.com/alcir/falcao.js/wiki
 
-## Foreword
+## Disclaimer
 
-I cannot be named a Node.js or PHP programmer. I've written this tool for my educational purposes, and as the final project for the edX CS50x course.
+I cannot be named a Node.js or a PHP programmer. I've written this tool for my own educational purposes, and it is my final project for the edX [[CS50x|https://www.edx.org/course/harvardx/harvardx-cs50x-introduction-computer-1022]] course.
 
