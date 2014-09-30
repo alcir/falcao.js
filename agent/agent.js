@@ -3,7 +3,7 @@ var net = require('net');
 var fs = require('fs');
 var logger = require('./logger.js')
 
-var settings = JSON.parse(fs.readFileSync('config.json', encoding="ascii"));
+var settings = JSON.parse(fs.readFileSync(__dirname + '/config.json', encoding="ascii"));
 
 module.exports = function() {
 

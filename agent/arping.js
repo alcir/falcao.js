@@ -3,7 +3,7 @@ var logger = require('./logger.js')
 var fs = require('fs');
 var dns = require('./ip2hostname.js');
 
-var settings = JSON.parse(fs.readFileSync('config.json', encoding="ascii"));
+var settings = JSON.parse(fs.readFileSync(__dirname + '/config.json', encoding="ascii"));
 
 module.exports = function (device, ip, callback) {
 

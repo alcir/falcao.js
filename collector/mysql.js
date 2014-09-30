@@ -3,7 +3,7 @@ var fs = require('fs');
 var mysql = require('mysql');
 var logger = require('./logger.js')
 
-var settings = JSON.parse(fs.readFileSync('config.json', encoding="ascii"));
+var settings = JSON.parse(fs.readFileSync(__dirname + '/config.json', encoding="ascii"));
 
 var pool = mysql.createPool({
   connectionLimit : 5,
