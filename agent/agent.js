@@ -1,25 +1,45 @@
+var path = require('path');
 var net = require('net');
 var fs = require('fs');
 var logger = require('./logger.js')
 
 var settings = JSON.parse(fs.readFileSync('config.json', encoding="ascii"));
 
-module.exports = function (data) {
+module.exports = function() {
 
-  var client = net.connect(settings.collectorport, settings.collectorhost);
+  this.connect = function() {
 
-  client.timeout = 1;
+    var client = new net.Socket();
 
-  client.on('error', function(err) {
-    logger.error('error:', err.message);
-  });
+    client.connect(settings.collectorport, settings.collectorhost, function() {
 
-  client.on('data', function(data) {
-    client.end();
-  });
+        logger.debug('agent CONNECTED TO: ' + settings.collectorhost + ':' + settings.collectorport);
 
-  //console.log('xxx ' + data.ts);
+    });
 
-  client.write(JSON.stringify(data));
+    client.on('data', function(data) {
 
+      logger.debug('agent DATA: ' + data);
+
+    });
+
+    client.on('timeout', function() {
+
+      logger.debug('agent Socket timeout: I assume there no more data to send.' );
+      // Close the client socket completely
+      client.destroy();
+
+    });
+
+    // Add a 'close' event handler for the client socket
+    client.on('close', function() {
+        logger.debug('agent Connection closed');
+    });
+
+    return client;
+  }
+
+  this.write = function(data, client) {
+    client.write(JSON.stringify(data));
+  }
 }

@@ -15,7 +15,14 @@ var pool = mysql.createPool({
 
 module.exports = function (data) {
 
-  var jdata = JSON.parse(data);
+//  var jdata = JSON.parse(data);
+
+  try {
+      var jdata = JSON.parse(data);
+  } catch (er) {
+      logger.error('mysql error parsing json ' + data);
+      return;
+  }
 
   //var ts = "FROM_UNIXTIME(" + jdata.ts.toString() +")";
 
@@ -27,32 +34,32 @@ module.exports = function (data) {
                 "lastcheck": jdata.ts.toString()
               };
 
-  logger.debug("ASSSSSSSSSSSSSSSSSSSSSSSSSSSSSssSTATUS : " + jdata.status);
+  logger.debug("mysql " + jdata.ip + " arping status: " + jdata.status);
 
-  if (jdata.status == false) {
-  //  logger.debug("STATUS : " + jdata.status);
+  if (jdata.status == false){
     post.lastseen="";
     post.firstseen="";
+    var sql = "INSERT INTO probes SET ? ON DUPLICATE KEY UPDATE lastcheck=(lastcheck)";
+  } else {
+    var sql = "INSERT INTO probes SET ? ON DUPLICATE KEY UPDATE mac=VALUES(mac), hostname=VALUES(hostname), lastseen=VALUES(lastseen), lastcheck=(lastcheck)";
   }
 
   //logger.debug("post : " + jdata.hostname);
 
-  var sql = "INSERT INTO probes SET ? ON DUPLICATE KEY UPDATE mac=VALUES(mac), hostname=VALUES(hostname), lastseen=VALUES(lastseen), lastcheck=(lastcheck)";
-
   pool.getConnection(function(err, connection) {
     if(err) {
-      logger.error("Pool Error: " + err.message);
+      logger.error("mysql Pool Error: " + err.message);
       connection.end();
       return;
     }
 
     var query = connection.query(sql, post, function(err, result) {
       if(err) {
-        logger.error("ClientReady Error: " + err.message);
+        logger.error("mysql ClientReady Error: " + err.message);
         connection.release();
         return;
       }
-      logger.debug("Executed query " + query.sql);
+      logger.debug("mysql Executed query " + query.sql);
       connection.release();
     });
 });

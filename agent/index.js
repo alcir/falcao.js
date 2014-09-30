@@ -1,5 +1,5 @@
 var arPing = require('./arping.js')
-var agent = require('./agent.js')
+var AGENT = require('./agent.js')
 var logger = require('./logger.js')
 
 var Netmask = require('netmask').Netmask
@@ -19,20 +19,27 @@ var patternMatch = addressSpace.match(ipv4Pattern);
 
 var block = new Netmask(addressSpace);
 
-logger.debug("Start " + block.first);
-logger.debug("Stop " + block.last);
+logger.debug("index Start " + block.first);
+logger.debug("index Stop " + block.last);
 
 //block.forEach(function(ip, long, index));
 
+var agent = new AGENT();
+
+var client = agent.connect();
+
+client.setTimeout(10000);
+
 block.forEach(function (ip) {
-  //console.log(ip)
+
   //function (device, ip, callback) {
   arPing(ethDevice, ip, function(data, status) {
 
     //if (data.status == true) {
-      agent(data)
+      agent.write(data,client);
     //}
 
-    //console.log(" + " + status)
   })
 });
+
+logger.debug("index Foreach ip end");

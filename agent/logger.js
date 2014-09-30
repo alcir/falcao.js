@@ -3,8 +3,8 @@ var fs = require('fs');
 
 module.exports = new (winston.Logger)({
   transports: [
-    new (winston.transports.Console)({ level: 'info' }),
-    new (winston.transports.File)({ filename: 'logs/all-logs.log' })
+    new (winston.transports.Console)(),
+    new (winston.transports.File)({ filename: './logs/all-logs.log', maxsize: 1024 * 1024 * 10, maxFiles: 5 })
   ]/*,
   exceptionHandlers: [
     new winston.transports.File({ filename: 'logs/exceptions.log' })
@@ -14,3 +14,4 @@ module.exports = new (winston.Logger)({
 var settings = JSON.parse(fs.readFileSync('config.json', encoding="ascii"));
 
 module.exports.transports.console.level = settings.loglevel;
+module.exports.transports.file.level = settings.loglevel;
