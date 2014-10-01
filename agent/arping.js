@@ -24,7 +24,7 @@ process.stderr.on('data', function (data) {
   logger.error('[arping] stderr: ' + data);
 });
 
-process.stdout.on('data', function (data, status) {
+process.stdout.once('data', function (data, status) {
 
     var status = null;
     var latency = null;
