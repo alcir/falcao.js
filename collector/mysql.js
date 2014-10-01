@@ -63,13 +63,15 @@ module.exports = function (data) {
     var query = connection.query(sql, post, function(err, result) {
       if(err) {
         logger.error("[mysql] ClientReady Error: " + err.message);
+        logger.error("[mysql] sql: " + sql);
+        logger.error("[mysql] post: " + JSON.stringify(post));
         connection.release();
         return;
       }
       logger.debug("[mysql] Executed query " + query.sql);
       connection.release();
     });
-    
+
 });
 
 
