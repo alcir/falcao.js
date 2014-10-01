@@ -11,21 +11,25 @@ module.exports = function() {
 
     var client = new net.Socket();
 
+    client.setTimeout(5000);
+    client.setNoDelay(true);
+
     client.connect(settings.collectorport, settings.collectorhost, function() {
 
-        logger.debug('agent CONNECTED TO: ' + settings.collectorhost + ':' + settings.collectorport);
+      logger.info('[agent] Connected to: ' + settings.collectorhost + ':' + settings.collectorport);
 
     });
 
-    client.on('data', function(data) {
+    client.on('error', function(err) {
 
-      logger.debug('agent DATA: ' + data);
+      logger.error('[agent] error: ', err.message);
 
     });
 
     client.on('timeout', function() {
 
-      logger.debug('agent Socket timeout: I assume there no more data to send.' );
+      logger.debug('[agent] Socket timeout: I assume there no more data to send.' );
+
       // Close the client socket completely
       client.destroy();
 
@@ -33,13 +37,17 @@ module.exports = function() {
 
     // Add a 'close' event handler for the client socket
     client.on('close', function() {
-        logger.debug('agent Connection closed');
+
+      logger.info('[agent] Connection closed');
+
     });
 
     return client;
+
   }
 
   this.write = function(data, client) {
-    client.write(JSON.stringify(data));
+    logger.debug("writing " + JSON.stringify(data) );
+    client.write(JSON.stringify(data) + ";");
   }
 }

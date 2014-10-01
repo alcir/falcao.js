@@ -11,17 +11,17 @@ var process = cp.spawn(settings.arpingcmd, ['-c 1', '-w 2', '-I', device, ip]);
 
 //console.debug("/usr/bin/arping -c 1 -w 2 -I " + device + " " + ip);
 
-logger.debug("arping working on " + device + " " + ip);
+logger.debug("[arping] working on " + device + " " + ip);
 
 //console.log(process.stderr);
 //console.log(process.stdout);
 
 process.on('close', function (code) {
-  logger.debug('arping child process for ' + ip + ' exited with code ' + code);
+  logger.debug('[arping] child process for ' + ip + ' exited with code ' + code);
 });
 
 process.stderr.on('data', function (data) {
-  logger.error('arping stderr: ' + data);
+  logger.error('[arping] stderr: ' + data);
 });
 
 process.stdout.on('data', function (data, status) {
@@ -48,7 +48,6 @@ process.stdout.on('data', function (data, status) {
     else {
       status = true;
       var ipv4Pattern = new RegExp(/^\[(.*)\]$/);
-
       mac = array[4].match(ipv4Pattern)[1];
     }
 
@@ -57,9 +56,15 @@ process.stdout.on('data', function (data, status) {
 
     dns(ip, function (hostname) {
 
-        logger.debug("arping function: invoking dns " + ip + ", result hostname " + hostname);
+        logger.debug("[arping] function: invoking dns " + ip + ", result hostname " + hostname);
 
-        var result = { "ip": ip , "hostname": hostname, "status": status, "mac": mac, "ts": ts };
+        var result = { "ip": ip ,
+                       "hostname": hostname,
+                       "status": status,
+                       "mac": mac,
+                       "ts": ts,
+                       "agent": settings.agentname
+                      };
 
         callback && callback(result, status);
 
