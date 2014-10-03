@@ -23,54 +23,55 @@
     $network = $_REQUEST["network"];
 
     $array = iprange($network);
-  
+
     foreach ($array as $ip)
     {
-        print("<tr>");
-        print("<td><a href='history.php?ip=" . $ip . "'/>" . $ip ."</td>");
-	   // print("<td>" . gethostbyaddr($ip) . "</td>");
-  
-        $found = 0;
-        $i = 0;
-        
-        while ( $i < count($positions) && $found == 0)
-        {    
-            $position = $positions[$i];
-            if ($position["ip"] == $ip)
-            {
-                //print("<td>" . $position["ip"] . "</td>");
-		        print("<td>" . $position["hostname"] . "</td>");
-		        print("<td>" . $position["mac"] . "</td>");
-		        print("<td>" . dateCalc($position["firstseen"]) . "</td>");
-		        //print("<td>" . date('d M Y G:i:s', $position["lastseen"]) ."</td>");
-			    print("<td>" . dateCalc($position["lastseen"]) ."</td>");
-		        print("<td>" . "<img width=20 src='" . status($position["hostname"], $position["lastseen"]) . "'/>" . "</td>");
-		        $found=1;
-            }
-            
-            $i++;
-        }
+      print("<tr>");
+      print("<td><a href='history.php?ip=" . $ip . "'/>" . $ip ."</td>");
+       // print("<td>" . gethostbyaddr($ip) . "</td>");
 
-        if ($found == 0)
+      $found = 0;
+      $i = 0;
+
+      while ( $i < count($positions) && $found == 0)
+      {
+        $position = $positions[$i];
+        if ($position["ip"] == $ip)
         {
-            //print("<td>" . $position["ip"] . "</td>");
-           // print("<td><b>" . $found. "</b></td>");
-            print("<td> - </td>");
-	        print("<td> - </td>");
-		    print("<td> - </td>");
-	        print("<td>" . "<img width=20 src='" . status("-", 0) . "'/>" . "</td>");
+          //print("<td>" . $position["ip"] . "</td>");
+          print("<td>" . $position["hostname"] . "</td>");
+          print("<td>" . $position["mac"] . "</td>");
+          print("<td>" . dateCalc($position["firstseen"]) . "</td>");
+          //print("<td>" . date('d M Y G:i:s', $position["lastseen"]) ."</td>");
+  	      print("<td>" . dateCalc($position["lastseen"]) ."</td>");
+          print("<td>" . "<img width=20 src='" . status($position["hostname"], $position["lastseen"]) . "'/>" . "</td>");
+          $found=1;
         }
 
-        print("</tr>");        
+        $i++;
+      }
+
+      if ($found == 0)
+      {
+        //print("<td>" . $position["ip"] . "</td>");
+        // print("<td><b>" . $found. "</b></td>");
+        print("<td> - </td>");
+        print("<td> - </td>");
+        print("<td> - </td>");
+        print("<td> - </td>");
+        print("<td>" . "<img width=20 src='" . status("-", 0) . "'/>" . "</td>");
+      }
+
+      print("</tr>");
     }
 
   //  print_r($positions[0]);
   /*
-    
-    
+
+
 	foreach ($positions as $position)
 		{
-		   
+
 		    print("<tr>");
 		    print("<td>" . $position["ip"] . "</td>");
 		    print("<td>" . gethostbyaddr($position["ip"]) . "</td>");
@@ -81,7 +82,7 @@
 		    print("<td>" . "<img width=20 src='" . status($position["lastseen"]) . "'/>" . "</td>");
 		    print("</tr>");
 		}
-		
+
     */
-    
+
 ?>
