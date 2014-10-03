@@ -21,7 +21,7 @@
         exit;
     }
 
- 
+
     /**
      * Executes SQL statement, possibly with parameters, returning
      * an array of all rows in result set or false on (non-fatal) error.
@@ -44,7 +44,7 @@
                 $handle = new PDO("mysql:dbname=" . DATABASE . ";host=" . SERVER, USERNAME, PASSWORD);
 
                 // ensure that PDO::prepare returns false when passed invalid SQL
-                $handle->setAttribute(PDO::ATTR_EMULATE_PREPARES, false); 
+                $handle->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
             }
             catch (Exception $e)
             {
@@ -107,80 +107,80 @@
 
     function status($hostname, $date)
     {
-		$now = time();
+  		$now = time();
 
-		$diff = abs($now - $date);
-		
-		$day = 1 * 24 * 60 * 60;
-       
-        //print("** ". $date." * " . $hostname . "** <br/>");
-       
-        if ( $date == 0 && $hostname == "-")
-        {
-            return WHITE;
-        }
-        else if ( $date == 0 && $hostname != "-")
-        {
-            return BLUE;
-        }
-        else if ($date != 0 && $hostname == "-")
-        {
-            return GREENBLUE;
-        }
-		else if ($diff < $day) {
-		    return GREEN;
-		}
-		else if ($diff < $day * 10)
-		{
-		    return YELLOW;
-		}
-		else
-		{
-		    return RED;
-		}
-	}
+  		$diff = abs($now - $date);
+
+  		$day = 1 * 24 * 60 * 60;
+
+      //print("** ". $date." * " . $hostname . "** <br/>");
+
+      if ( $date == 0 && $hostname == "-")
+      {
+          return WHITE;
+      }
+      else if ( $date == 0 && $hostname != "-")
+      {
+          return BLUE;
+      }
+      else if ($date != 0 && $hostname == "-")
+      {
+          return GREENBLUE;
+      }
+  		else if ($diff < $day) {
+  		    return GREEN;
+  		}
+  		else if ($diff < $day * 10)
+  		{
+  		    return YELLOW;
+  		}
+  		else
+  		{
+  		    return RED;
+  		}
+    }
 
     function iprange($ip)
     {
-    
-        $array = array();
-        
-        list($ip, $netmask) = explode('/', $ip, 2);
-        
-        // create IPv4 object
-        $ip_calc = new Net_IPv4();
-        
-        // set variables
-        $ip_calc->ip = $ip;
-        $ip_calc->bitmask = $netmask;
-        
-        $error = $ip_calc->calculate();
 
-        if (is_object($error))
-        {
-          echo "An error occured: ".$error->getMessage();
-        }
-        
-        $curr = ip2long($ip_calc->network)+1;
-        
-        while($curr < ip2long($ip_calc->broadcast) )
-        {  
-            array_push($array,long2ip($curr));
-            $curr += 1;
-        }
-        
-        return $array;
+      $array = array();
+
+      list($ip, $netmask) = explode('/', $ip, 2);
+
+      // create IPv4 object
+      $ip_calc = new Net_IPv4();
+
+      // set variables
+      $ip_calc->ip = $ip;
+      $ip_calc->bitmask = $netmask;
+
+      $error = $ip_calc->calculate();
+
+      if (is_object($error))
+      {
+        echo "An error occured: ".$error->getMessage();
+      }
+
+      $curr = ip2long($ip_calc->network)+1;
+
+      while($curr < ip2long($ip_calc->broadcast) )
+      {
+        array_push($array,long2ip($curr));
+        $curr += 1;
+      }
+
+      return $array;
     }
 
     function dateCalc($date)
     {
-        if ($date != 0)
-        {
-            return date('d M Y G:i:s', $date);
-        }
-        else
-        {
-            return "never";
-        }
+      if ($date != 0)
+      {
+          return date('d M Y G:i:s', $date);
+      }
+      else
+      {
+          return "never";
+      }
     }
 ?>
