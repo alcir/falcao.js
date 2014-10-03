@@ -1,0 +1,24 @@
+<?php
+
+    // your database's name
+    define("DATABASE", "falcaojs");
+
+    // your database's password
+    define("PASSWORD", "password");
+
+    // your database's server
+    define("SERVER", "dbserver.example.com");
+
+    // your database's username
+    define("USERNAME", "falcaojs");
+
+    date_default_timezone_set ("Europe/Rome");
+
+    define("GREEN", "./img/B_Rectangle_H50_S1502G.png");
+    define("YELLOW", "./img/B_Rectangle_H25_S1503G.png");
+    define("RED", "./img/B_Rectangle_H250_S1505G.png");
+    define("WHITE", "./img/B_Rectangle_H0_S01G.png");
+    define("BLUE", "./img/B_Rectangle_H150_S1503G.png");
+    define("GREENBLUE", "./img/GreenBlue.png");
+    
+?>
