@@ -22,6 +22,7 @@ var server = net.createServer(options, function(c) {
 
   c.on('end', function() {
     logger.info("[index] " + c.remoteAddress + " disconnected");
+    // close the related agent connection
     c.end();
   });
 
