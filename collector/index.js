@@ -32,12 +32,13 @@ var server = net.createServer(options, function(c) {
     logger.info("[index] " + c.remoteAddress + " sending data");
   });
 
+  var chunk = "";
+
   c.on('data', function(data) {
 
     // copy and paste from
     // http://stackoverflow.com/questions/12872563/issues-when-reading-a-string-from-tcp-socket-in-node-js
 
-    var chunk = "";
     chunk += data.toString(); // Add string on the end of the variable 'chunk'
     d_index = chunk.indexOf(';'); // Find the delimiter
     logger.debug("[index] chunk " + chunk.toString());
