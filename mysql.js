@@ -57,9 +57,9 @@ module.exports = function (data) {
     if(err) {
       logger.error("mysql Pool Error: " + err.message);
       if (err.message == "connect EMFILE") {
-	logger.debug("mysql connect EMFILE");
+
       } else if (err.message == "connect ECONNREFUSED") {
-	logger.debug("mysql connect ECONNREFUSED");
+	
       } else {
       	connection.end();
       }
