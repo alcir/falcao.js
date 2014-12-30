@@ -1,0 +1,11 @@
+[Unit]
+Description=Mirth Connect
+After=network.target
+
+[Service]
+Type=simple
+User=falcaojs
+ExecStart=/usr/bin/node /opt/falcaojs/collector/index.js
+
+[Install]
+WantedBy=multi-user.target
