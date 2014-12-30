@@ -6,6 +6,7 @@
 
 DAEMON_PATH="/opt/falcao.js/collector"
 
+USER=falcaojs
 DAEMON=/usr/local/bin/node
 DAEMONOPTS="$DAEMON_PATH/index.js"
 
@@ -18,9 +19,12 @@ case "$1" in
 start)
         printf "%-50s" "Starting $NAME..."
         cd $DAEMON_PATH
-        PID=`$DAEMON $DAEMONOPTS > /dev/null 2>&1 & echo $!`
+        PID=`su $USER -c $DAEMON $DAEMONOPTS > /dev/null 2>&1 & echo $!`
+        sleep 1
         #echo "Saving PID" $PID " to " $PIDFILE
         if [ -z $PID ]; then
+            printf "%s\n" "Fail"
+        elif [ $(if ! kill -0 $PID > /dev/null 2>&1; then echo 1; else echo 0; fi) -eq 1 ]; then
             printf "%s\n" "Fail"
         else
             echo $PID > $PIDFILE
