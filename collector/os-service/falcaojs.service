@@ -1,5 +1,5 @@
 [Unit]
-Description=Mirth Connect
+Description=Falcao.js Collector service
 After=network.target
 
 [Service]
